@@ -1,0 +1,32 @@
+[
+  {
+    "content": "[setup] Add Python deps (faker) + install frontend deps",
+    "id": "t1",
+    "status": "completed"
+  },
+  {
+    "content": "[backend] Build synthetic data generator + MTA models + FastAPI routers",
+    "id": "t2",
+    "status": "completed"
+  },
+  {
+    "content": "[frontend] Global styles, layout, navigation (dark clinical aesthetic)",
+    "id": "t3",
+    "status": "completed"
+  },
+  {
+    "content": "[frontend] Dashboard + JourneyMap + Attribution pages",
+    "id": "t4",
+    "status": "completed"
+  },
+  {
+    "content": "[frontend] ChannelAnalysis + Compliance pages",
+    "id": "t5",
+    "status": "completed"
+  },
+  {
+    "content": "[verify] Start server, smoke test all routes + pages",
+    "id": "t6",
+    "status": "completed"
+  }
+]
