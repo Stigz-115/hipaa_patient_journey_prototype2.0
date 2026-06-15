@@ -71,6 +71,47 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+# ── Password gate ─────────────────────────────────────────────────────────────
+def _check_password() -> bool:
+    """Returns True once the correct password has been entered."""
+    if st.session_state.get("_authenticated"):
+        return True
+
+    st.markdown("""
+    <div style="max-width:400px;margin:80px auto 0;text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:2rem;color:#e8f0fe;margin-bottom:6px;">PathIQ</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#4a6080;
+            letter-spacing:0.12em;text-transform:uppercase;margin-bottom:32px;">
+            Patient Journey Analytics · Restricted Access
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    col_l, col_c, col_r = st.columns([1, 2, 1])
+    with col_c:
+        pwd = st.text_input("Password", type="password", placeholder="Enter access password")
+        submitted = st.button("Access →", use_container_width=True)
+
+        if submitted or pwd:
+            correct = st.secrets.get("APP_PASSWORD", "")
+            if pwd == correct and correct != "":
+                st.session_state["_authenticated"] = True
+                st.rerun()
+            elif pwd:
+                st.error("Incorrect password.")
+
+        st.markdown("""
+        <div style="text-align:center;margin-top:20px;font-family:'IBM Plex Mono',monospace;
+            font-size:9px;color:#4a6080;">
+            🔒 HIPAA-Safe Prototype · Synthetic Data Only
+        </div>
+        """, unsafe_allow_html=True)
+
+    return False
+
+if not _check_password():
+    st.stop()
+
 # ── Global CSS ────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
